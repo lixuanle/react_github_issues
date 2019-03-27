@@ -1,0 +1,142 @@
+a {
+  color: #007bff
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+#issues-page {
+  width: 70%;
+  margin: auto;
+}
+
+#issues-header {
+  text-align: center;
+  color: white;
+  background-color: #24292e;
+  margin-top: 0;
+  padding: 1em 0 1em 0;
+  width: 100%;
+}
+
+#issues-caption {
+  text-align: center;
+  padding: 1.5em;
+  border-style: solid;
+  border-color: #eaeae1;
+  border-width: 1px;
+  font-family: sans-serif;
+  font-weight: normal;
+}
+
+#search-bar {
+  width: 80%;
+  margin: auto;
+  display: grid;
+  padding-bottom: 1em;
+}
+
+#search-bar input {
+  padding: 0.5em 0 0.5em 40px;
+  background-image:url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwd9t9-J2wwy7hv6S_V95qXYCCN8cMpolIiOjQomirSZ1TtBjAqA');
+  background-repeat: no-repeat;
+  background-position: 9px 5px;
+  background-size: 20px 20px;
+}
+
+#issues-top {
+  background-color: #fafbfc;
+  border-style: solid;
+  border-color: #eaeae1;
+  border-width: 1px 1px 0 1px;
+  padding: 5px 10px 5px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+#issues-top p {
+  margin: 0;
+}
+
+#language-dropdown {
+}
+
+.issue-container {
+  display: grid;
+  grid-template-columns: 50px 1fr;
+  grid-template-rows: 1.5em 1.1em 1.1em;
+  background-color: #fafbfc;
+  border: 1px solid #eaeae1;
+  padding-bottom: 0.5em;
+  padding-top: 0.5em;
+}
+
+.issue-logo-green, .issue-logo-red {
+  grid-row-start: 1;
+  grid-row-end: 3;
+  margin: auto;
+}
+
+.issue-logo-green {
+  color: green;
+}
+
+.issue-logo-red {
+  color: red;
+}
+
+.issue-text {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  margin: 0;
+  font-size: 12px;
+  text-overflow: clip;
+  white-space: nowrap;
+  overflow: hidden;
+  height: 1.5em;
+  padding-right: 1em;
+}
+
+.issues-snippet {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.title {
+  font-size: 16px;
+  text-decoration: none;
+  margin-bottom: 10px;
+}
+
+.author-link {
+  text-decoration: none;
+}
+
+.avatar-pic {
+  width: 15px;
+  height: 15px;
+}
+
+.loader {
+  border: 16px solid #f3f3f3; /* Light grey */
+  border-top: 16px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
+  margin: 3em auto auto auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@media only screen and (max-width: 425px) {
+  #issues-caption {
+    font-size: 20px;
+  }
+}
