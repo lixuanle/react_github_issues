@@ -1,9 +1,8 @@
-require('dotenv').config({path: '.env'});
 import React from 'react';
 import './issues.css';
 import Loader from './Loader';
 import IssueComponent from './IssueComponent';
-import Pagination from './Pagination';
+require('dotenv').config({path: '.env'});
 const fetch = require('node-fetch');
 const CLIENT_ID = process.env.CLIENT_ID;
 const CLIENT_SECRET = process.env.CLIENT_SECRET;
@@ -72,12 +71,6 @@ class Issues extends React.Component {
     return(date.slice(0,10))
   };
 
-  changePage = (newPage) => {
-    this.setState({
-      page: newPage
-    }, () => this.getIssues());
-  };
-
   render() {
     const issues_list = this.state.searches.map((x) => {
       if (x.title) {
@@ -109,7 +102,6 @@ class Issues extends React.Component {
             </select>
           </div>
           {this.state.loading === 1 ? <Loader/> : issues_list}
-          {this.state.total_pages > 30 ? <Pagination pages={30} getIssue={this.getIssues} nextPage={this.changePage} current={this.state.page}/> : <Pagination pages={this.state.total_pages} getIssue={this.getIssues} nextPage={this.changePage}/>}
         </div>
       </div>
     );
