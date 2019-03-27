@@ -75,7 +75,7 @@ class Issues extends React.Component {
     const issues_list = this.state.searches.map((x) => {
       if (x.title) {
         let date = this.fixDate(x.created_at);
-        return (<IssueComponent key={x.node_id} title={x.title} snippet={x.body} date={date} author={x.user} url={x.html_url} flag={x.state}/>)
+        return (<IssueComponent key={x.node_id} number={x.number} comments={x.comments} cUrl={x.comments_url} title={x.title} snippet={x.body} date={date} author={x.user} url={x.html_url} flag={x.state} labels={x.labels}/>)
       };
     });
     return (

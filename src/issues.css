@@ -93,10 +93,14 @@ a:hover {
   margin: 0;
   font-size: 12px;
   text-overflow: clip;
-  white-space: nowrap;
+  white-space: wrap;
   overflow: hidden;
-  height: 1.5em;
+  height: 2em;
   padding-right: 1em;
+}
+
+.title-container a {
+  padding-right: 0.5em;
 }
 
 .issues-snippet {
@@ -120,6 +124,11 @@ a:hover {
   height: 15px;
 }
 
+.comments-link {
+  color: black;
+  text-decoration: none;
+}
+
 .loader {
   border: 16px solid #f3f3f3; /* Light grey */
   border-top: 16px solid #3498db; /* Blue */
@@ -138,5 +147,13 @@ a:hover {
 @media only screen and (max-width: 425px) {
   #issues-caption {
     font-size: 20px;
+  }
+
+  #issues-page {
+    width: 90%;
+  }
+
+  .comments-link {
+    display: none;
   }
 }
