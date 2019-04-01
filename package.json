@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.11.2",
+    "enzyme-to-json": "^3.3.5",
     "gh-pages": "^2.0.1",
     "node-fetch": "^2.3.0",
     "react": "^16.8.5",
@@ -11,6 +14,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "build": "react-scripts build",
     "predeploy": "yarn run build",
     "deploy": "gh-pages -d build",
     "test": "react-scripts test",
@@ -25,5 +29,11 @@
     "not ie <= 11",
     "not op_mini all"
   ],
-  "homepage": "https://lixuanle.github.io/react_github_issues"
+  "homepage": "https://lixuanle.github.io/react_github_issues",
+  "globals": {
+    "mount": false,
+    "render": false,
+    "shallow": false,
+    "shallowToJson": false
+  }
 }

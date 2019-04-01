@@ -1,58 +1,50 @@
-import React from 'react';
-import './issues.css';
+import React, { PureComponent } from 'react';
 import Loader from './Loader';
-import IssueComponent from './IssueComponent';
+import IssueComponent from './Components/IssueComponent/IssueComponent';
+import './issues.css';
+
 require('dotenv').config({path: '.env'});
-const fetch = require('node-fetch');
+
 const CLIENT_ID = process.env.CLIENT_ID;
 const CLIENT_SECRET = process.env.CLIENT_SECRET;
 
-class Issues extends React.Component {
+class Issues extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      inputV: '',
-      total: 0,
+      searchValue: '',
       searches: [{}],
       language: '&',
-      loading: 0,
-      total_pages: 0,
+      loading: true,
       page: 1
     };
-  };
-
-  //Fires off the initial search to populate the page with the most recent issues.
-  componentWillMount() {
     this.getIssues();
   };
 
   //Makes a GET request to the github issues api and updates states accordingly.
   getIssues = () => {
-    let searchTerm = this.state.inputV;
-    let languageSearch = this.state.language;
-    let pageNum = this.state.page;
-    console.log(pageNum);
-    fetch(`https://api.github.com/search/issues?q=${searchTerm}+state:open${languageSearch}&page=${pageNum}&per_page=30`)
+    const { searchValue, language, page } = this.state;
+    fetch(`https://api.github.com/search/issues?q=${searchValue}+state:open${language}&page=${page}&per_page=30`)
       .then(res => res.json())
       .then(json => this.setState({
         total: json.total_count,
         searches: json.items,
-        loading: 0,
+        loading: false,
         total_pages: Math.floor(json.total_count/30)
       }));
   };
 
-  //Changes the inputV state to what the user inputs.
+  //Changes the searchValue state to what the user inputs.
   handleChange = (e) => {
     this.setState({
-      inputV: e.target.value
+      searchValue: e.target.value
     })
   };
 
   //Function to trigger the search.
   handleSubmit = (e) => {
     this.setState({
-      loading: 1,
+      loading: true,
       page: 1
     }, () => this.getIssues())
     e.preventDefault();
@@ -62,7 +54,7 @@ class Issues extends React.Component {
   handleDrop = (e) => {
     this.setState({
       language: '+language:' + e.target.value + `&`,
-      loading: 1
+      loading: true
     }, () => this.getIssues());
   };
 
@@ -71,23 +63,28 @@ class Issues extends React.Component {
     return(date.slice(0,10))
   };
 
-  render() {
-    const issues_list = this.state.searches.map((x) => {
-      if (x.title) {
-        let date = this.fixDate(x.created_at);
-        return (<IssueComponent key={x.node_id} number={x.number} comments={x.comments} cUrl={x.comments_url} title={x.title} snippet={x.body} date={date} author={x.user} url={x.html_url} flag={x.state} labels={x.labels}/>)
-      };
+  renderIssues = (searches) => {
+    return searches.map((search) => {
+      if (search.title) {
+        let date = this.fixDate(search.created_at);
+        return (<IssueComponent key={search.node_id} number={search.number} comments={search.comments} cUrl={search.comments_url} title={search.title} snippet={search.body} date={date} author={search.user} url={search.html_url} flag={search.state} labels={search.labels}/>)
+      }
+      else return null;
     });
+  }
+
+  render() {
+    const { searches, total, loading } = this.state;
     return (
       <div>
         <h1 id="issues-header">GitHub Issues</h1>
         <div id="issues-page">
           <h2 id="issues-caption">Look up over millions of issues and pull requests across GitHub</h2>
           <form id="search-bar" onSubmit={this.handleSubmit}>
-            <input type="text" onChange={this.handleChange} placeholder="Search for issues across millions of repos.."/>
+            <input type="tesearcht" onChange={this.handleChange} placeholder="Search for issues across millions of repos.."/>
           </form>
           <div id="issues-top">
-            <p>{this.state.total} Issues</p>
+            <p>{total} Issues</p>
             <select name="language" id="language-dropdown" onChange={this.handleDrop}>
               <option value="default" default hidden>Language</option>
               <option value="javascript">Javascript</option>
@@ -101,7 +98,7 @@ class Issues extends React.Component {
               <option value="cpp">C++</option>
             </select>
           </div>
-          {this.state.loading === 1 ? <Loader/> : issues_list}
+          {loading ? <Loader/> : this.renderIssues(searches)}
         </div>
       </div>
     );

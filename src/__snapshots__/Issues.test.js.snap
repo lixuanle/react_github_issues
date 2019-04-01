@@ -1,0 +1,96 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Issues Testing has loader and all html on inital render 1`] = `
+<div>
+  <h1
+    id="issues-header"
+  >
+    GitHub Issues
+  </h1>
+  <div
+    id="issues-page"
+  >
+    <h2
+      id="issues-caption"
+    >
+      Look up over millions of issues and pull requests across GitHub
+    </h2>
+    <form
+      id="search-bar"
+      onSubmit={[Function]}
+    >
+      <input
+        onChange={[Function]}
+        placeholder="Search for issues across millions of repos.."
+        type="tesearcht"
+      />
+    </form>
+    <div
+      id="issues-top"
+    >
+      <p>
+         Issues
+      </p>
+      <select
+        id="language-dropdown"
+        name="language"
+        onChange={[Function]}
+      >
+        <option
+          default={true}
+          hidden={true}
+          value="default"
+        >
+          Language
+        </option>
+        <option
+          value="javascript"
+        >
+          Javascript
+        </option>
+        <option
+          value="python"
+        >
+          Python
+        </option>
+        <option
+          value="java"
+        >
+          Java
+        </option>
+        <option
+          value="html"
+        >
+          HTML
+        </option>
+        <option
+          value="css"
+        >
+          CSS
+        </option>
+        <option
+          value="ruby"
+        >
+          Ruby
+        </option>
+        <option
+          value="csharp"
+        >
+          C#
+        </option>
+        <option
+          value="php"
+        >
+          PHP
+        </option>
+        <option
+          value="cpp"
+        >
+          C++
+        </option>
+      </select>
+    </div>
+    <Loader />
+  </div>
+</div>
+`;
