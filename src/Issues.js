@@ -32,7 +32,7 @@ class Issues extends React.Component {
     let languageSearch = this.state.language;
     let pageNum = this.state.page;
     console.log(pageNum);
-    fetch(`https://api.github.com/search/issues?q=${searchTerm}+state:open${languageSearch}client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}&page=${pageNum}&per_page=30`)
+    fetch(`https://api.github.com/search/issues?q=${searchTerm}+state:open${languageSearch}&page=${pageNum}&per_page=30`)
       .then(res => res.json())
       .then(json => this.setState({
         total: json.total_count,
